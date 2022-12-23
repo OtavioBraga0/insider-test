@@ -3,41 +3,42 @@ import { Product } from "./components/product.js";
 
 const baseURL =
   "https://us-central1-insider-integrations.cloudfunctions.net/cart-api-fullstack-test";
-let cartToken = "";
+const cartEnvironment = {
+  token: "",
+};
 
 async function removeProductFromCart(element) {
   const id = element.target.parentNode.parentNode.getAttribute("data-id");
 
-  fetch(`${baseURL}/cart/${cartToken}/${id}`, {
+  const response = await fetch(`${baseURL}/cart/${cartToken}/${id}`, {
     method: "DELETE",
-  }).then(async (response) => {
-    if (response.ok) {
-      fetchCart(await response.json());
-    }
   });
+
+  if (response.ok) {
+    remderCart(await response.json());
+  }
 }
 
-async function fetchCart(cart) {
-  if (cart.itens_total) {
+async function renderCart(cart) {
+  const { itens_total, valor_total, products } = cart;
+  if (itens_total) {
     const mountedCart = `
         <div>
             <img src="../assets/icons/bag.svg" alt="Bag Icon"/>
             <h2>sua cesta tem ${
-              cart.itens_total === 1
-                ? `${cart.itens_total} item`
-                : `${cart.itens_total} itens`
+              itens_total === 1 ? `1 item` : `${itens_total} itens`
             }</h2>
         </div>
         <ul class="cart__list">
         </ul>
-        <button type="button">total: R$ ${cart.valor_total.toFixed(2)}</button>
+        <button type="button">total: R$ ${valor_total.toFixed(2)}</button>
     `;
 
     document.querySelector(".cart").innerHTML = mountedCart;
 
     const cartListElement = document.querySelector(".cart__list");
 
-    cart.products.forEach((cartItem) => {
+    products.forEach((cartItem) => {
       const cartItemElement = CartItem(cartItem);
 
       cartItemElement
@@ -69,19 +70,19 @@ async function addProductOnCart(element) {
     quantidade: 1,
   };
 
-  fetch(`${baseURL}/cart/${cartToken}`, {
+  const response = await fetch(`${baseURL}/cart/${cartToken}`, {
     headers: { "Content-type": "application/json; charset=UTF-8" },
     method: "POST",
     body: JSON.stringify(requestBody),
-  }).then(async (response) => {
-    if (response.ok) {
-      const cartInformation = await response.json();
-
-      cartToken = cartInformation.token;
-      document.querySelector(".cart").classList.remove("cart--empty");
-      fetchCart(cartInformation);
-    }
   });
+
+  if (response.ok) {
+    const cartInformation = await response.json();
+
+    cartEnvironment.token = cartInformation.token;
+    document.querySelector(".cart").classList.remove("cart--empty");
+    renderCart(cartInformation);
+  }
 }
 
 async function initialLoad() {
