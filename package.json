@@ -5,7 +5,7 @@
     "nodemon": "^2.0.20"
   },
   "scripts": {
-    "css": "node-sass --include-path scss ./style/home.scss ./style.css",
+    "css": "node-sass --include-path scss ./style/index.scss ./style.css",
     "watch": "nodemon -e scss -x 'npm run css'"
   }
 }

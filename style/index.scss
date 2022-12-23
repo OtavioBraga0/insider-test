@@ -1,0 +1,168 @@
+$gray: #ced4da;
+$dark-gray: #868e96;
+$black: #000;
+$white: #fff;
+
+body {
+  margin: 0;
+}
+
+main {
+  display: flex;
+  align-items: center;
+
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+
+  margin-top: 60px;
+}
+
+header {
+  background-color: $gray;
+
+  padding: 15px 20px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  align-items: center;
+  justify-content: center;
+
+  gap: 50px;
+
+  padding-bottom: 50px;
+
+  width: calc(100% - 440px);
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+
+    & > img {
+      max-height: 400px;
+      object-fit: cover;
+
+      margin-bottom: 20px;
+    }
+
+    & > h2,
+    & > h3 {
+      margin: 0;
+    }
+
+    & > button {
+      background-color: $black;
+      width: 200px;
+      border: none;
+      color: $white;
+
+      font-size: 18px;
+
+      padding: 10px;
+      margin-top: 20px;
+
+      cursor: pointer;
+    }
+  }
+}
+
+.cart {
+  position: fixed;
+  top: 60px;
+  bottom: 0;
+  right: 0;
+
+  width: 400px;
+
+  border: 3px dashed $black;
+  background-color: $white;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 15px;
+
+  &--empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    & > img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  & > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 20px;
+
+    & > img {
+      width: 30px;
+      height: 30px;
+    }
+
+    & > h2 {
+      font-size: 20px;
+    }
+  }
+
+  & > button {
+    background-color: $black;
+    border: none;
+    color: $white;
+
+    padding: 7px;
+
+    font-size: 22px;
+
+    cursor: pointer;
+  }
+
+  &__list {
+    list-style: none;
+    flex-grow: 0.9;
+    overflow: auto;
+
+    &__item {
+      display: flex;
+      gap: 15px;
+      & > img {
+        width: 100px;
+        height: 100px;
+      }
+
+      & > div {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+
+        & > h3,
+        & > p {
+          margin: 0;
+        }
+
+        & > button {
+          background-color: $dark-gray;
+          color: $white;
+          border: none;
+
+          padding: 5px;
+
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
