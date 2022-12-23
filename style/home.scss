@@ -1,0 +1,18 @@
+$gray: #ced4da;
+$black: #000;
+$white: #fff;
+
+body {
+  margin: 0;
+}
+
+main {
+  display: flex;
+  align-items: center;
+}
+
+header {
+  background-color: $gray;
+
+  padding: 15px 20px;
+}
