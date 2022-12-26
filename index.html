@@ -7,15 +7,31 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>
+    <header class="header">
+      <button type="button" class="header__back--mobile">
+        <img
+          src="./assets/icons/back.svg"
+          alt="Voltar aos Produtos"
+          width="25"
+          height="30"
+        />
+      </button>
       <img src="./assets/images/logo.avif" alt="INSIDER" />
+      <button type="button" class="header__cart--mobile">
+        <img
+          src="./assets/icons/bag.svg"
+          alt="Carrinho"
+          width="25"
+          height="25"
+        />
+      </button>
     </header>
     <main>
       <section class="products">
         <!-- Será preenchido automaticamente depois do primeiro load -->
       </section>
       <aside class="cart cart--empty">
-        <img src="./assets/icons/bag.svg" alt="Bag Icon" />
+        <img src="./assets/icons/bag.svg" alt="Carrinho" />
         <h3>
           sua cesta está vazia.<br />
           adicione um produto. :)

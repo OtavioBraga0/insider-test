@@ -85,3 +85,15 @@ export async function addProductOnCart(element) {
     renderCart(cartInformation);
   }
 }
+
+export function toggleCart(open) {
+  const cartElement = document.querySelector(".cart");
+  const headerElement = document.querySelector(".header");
+  if (open) {
+    cartElement.classList.add("cart--opened");
+    headerElement.classList.add("header--cart-opened");
+  } else {
+    cartElement.classList.remove("cart--opened");
+    headerElement.classList.remove("header--cart-opened");
+  }
+}
