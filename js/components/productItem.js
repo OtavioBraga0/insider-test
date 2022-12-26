@@ -1,4 +1,4 @@
-export const Product = ({ imagem, nome, valor, codigo }) => {
+export const ProductItem = ({ imagem, nome, valor, codigo }) => {
   const productElement = document.createElement("div");
 
   productElement.classList.add("products__item");
